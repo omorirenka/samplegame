@@ -20,7 +20,25 @@ class MyScene extends Phaser.Scene {
 
    }
    
-    update() {
-    
+    update(time, delta) {
+        let cursors = this.input.keyboard.createCursorKeys();
+        if(cursors.up.isDown){
+            this.taro.setVelocityY(-40);
+            this.hanako.setVelocityY(40);
+        } else if(cursors.down.isDown){
+            this.taro.setVelocityY(40);
+            this.hanako.setVelocityY(-40);
+        }else if(cursors.left.isDown){
+            this.taro.setVelocityX(-40);
+            this.hanako.setVelocityX(40);
+        }else if(cursors.right.isDown){
+            this.taro.setVelocityX(40);
+            this.hanako.setVelocityX(-40);
+        }else{
+            this.taro.setVelocityX(0);
+            this.taro.setVelocityY(0);
+            this.hanako.setVelocityX(0);
+            this.hanako.setVelocityY(0);
+        }
     }
 }
