@@ -8,6 +8,8 @@ class MyScene extends Phaser.Scene {
        this.load.image('back', 'assets/background.png');
        this.load.image('taro', 'assets/taro.png');
        this.load.image('hanako', 'assets/hanako.png');
+       this.load.image('apple', 'assets/apple.png');
+       this.load.image('orange', 'assets/orange.png');
    }
 
    // シーン初期化処理
@@ -17,6 +19,15 @@ class MyScene extends Phaser.Scene {
        const hanako = this.physics.add.sprite(750, 400, 'hanako');
        this.taro = taro;
        this.hanako = hanako;
+
+       for(let i = 1;i<=5;i++){
+        let applex = Phaser.Math.Between(25, 775);
+        let appley = Phaser.Math.Between(25, 425);
+        let orangex = Phaser.Math.Between(25, 775);
+        let orangey = Phaser.Math.Between(25, 425);
+        this.add.image(applex, appley , 'apple');
+        this.add.image(orangex, orangey , 'orange');
+       }
 
    }
    
