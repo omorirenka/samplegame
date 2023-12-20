@@ -34,12 +34,12 @@ class MyScene extends Phaser.Scene {
 
        this.physics.add.overlap(taro, staticGroup, collectCoin, null, this);
        function collectCoin(p,coin){
-        this.add.text(D_WIDTH/3,D_HEIGHT*1/3, 'Game Over', { fontSize: '32px', fill: '#FFF' });
+        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
         this.physics.pause();
        }
        this.physics.add.overlap(hanako, staticGroup, collectCoin, null, this);
        function collectCoin(p,coin){
-        this.add.text(D_WIDTH/3,D_HEIGHT*1/3, 'Game Over', { fontSize: '32px', fill: '#FFF' });
+        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
         this.physics.pause();
        }
 
