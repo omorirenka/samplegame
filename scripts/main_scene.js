@@ -20,13 +20,27 @@ class MyScene extends Phaser.Scene {
        this.taro = taro;
        this.hanako = hanako;
 
+       let staticGroup = this.physics.add.staticGroup();
        for(let i = 1;i<=5;i++){
         let applex = Phaser.Math.Between(25, 775);
         let appley = Phaser.Math.Between(25, 425);
         let orangex = Phaser.Math.Between(25, 775);
         let orangey = Phaser.Math.Between(25, 425);
-        this.add.image(applex, appley , 'apple');
-        this.add.image(orangex, orangey , 'orange');
+        // this.add.image(applex, appley , 'apple');
+        // this.add.image(orangex, orangey , 'orange');
+        staticGroup.create(applex, appley , 'apple');
+        staticGroup.create(orangex, orangey , 'orange');
+       }
+
+       this.physics.add.overlap(taro, staticGroup, collectCoin, null, this);
+       function collectCoin(p,coin){
+        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
+        this.physics.pause();
+       }
+       this.physics.add.overlap(hanako, staticGroup, collectCoin, null, this);
+       function collectCoin(p,coin){
+        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
+        this.physics.pause();
        }
 
    }

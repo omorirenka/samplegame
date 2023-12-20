@@ -1,3 +1,4 @@
+let config;
 let game;
 
 // ゲーム画面サイズ
@@ -23,7 +24,7 @@ window.onload = function() {
                 debug: true // デバックモード
             }
         },
-        scene: [MyScene], // デフォルトシーン
+        scene: MyScene, // デフォルトシーン
     };
     // ゲーム開始
     game = new Phaser.Game(config);
