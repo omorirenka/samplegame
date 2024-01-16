@@ -1,6 +1,8 @@
 class MyScene extends Phaser.Scene {
+    // count = 0
     constructor() {
         super({ key: 'MyScene1', active: true });
+        this.count = 0; //取得したフルーツの数を数える
     }
 
     preload() {
@@ -32,16 +34,17 @@ class MyScene extends Phaser.Scene {
         staticGroup.create(orangex, orangey , 'orange');
        }
 
-       this.physics.add.overlap(taro, staticGroup, collectCoin, null, this);
-       function collectCoin(p,coin){
-        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
-        this.physics.pause();
-       }
-       this.physics.add.overlap(hanako, staticGroup, collectCoin, null, this);
-       function collectCoin(p,coin){
-        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
-        this.physics.pause();
-       }
+    //    this.physics.add.overlap(taro, staticGroup, collectCoin, null, this);
+    //    function collectCoin(p,coin){
+    //     this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
+    //     this.physics.pause();
+    //    }
+        this.fruitsText = this.add.text(D_WIDTH*1/3,10, 'とったフルーツの数'+this.count, { fontSize: '20px', fill: '#FFF' });
+        this.physics.add.overlap(hanako, staticGroup, collectCoin, null, this);
+        function collectCoin(p,fruit){
+            this.count+=1;
+            fruit.disableBody(true, true);
+        }
 
    }
    
@@ -64,6 +67,12 @@ class MyScene extends Phaser.Scene {
             this.taro.setVelocityY(0);
             this.hanako.setVelocityX(0);
             this.hanako.setVelocityY(0);
+        }
+        this.fruitsText.setText('とったフルーツの数' + this.count);
+        // フルーツを10個取ったらゲームを止める
+        if(this.count >= 10){
+            this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Clear', { fontSize: '32px', fill: '#FFF' });
+            this.physics.pause();
         }
     }
 }
