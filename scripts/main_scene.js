@@ -34,11 +34,11 @@ class MyScene extends Phaser.Scene {
         staticGroup.create(orangex, orangey , 'orange');
        }
 
-    //    this.physics.add.overlap(taro, staticGroup, collectCoin, null, this);
-    //    function collectCoin(p,coin){
-    //     this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
-    //     this.physics.pause();
-    //    }
+       this.physics.add.overlap(taro, staticGroup, collecttaro, null, this);
+       function collecttaro(p,coin){
+        this.add.text(D_WIDTH*1/3,D_HEIGHT*1/2, 'Game Over', { fontSize: '32px', fill: '#FFF' });
+        this.physics.pause();
+       }
         this.fruitsText = this.add.text(D_WIDTH*1/3,10, 'とったフルーツの数'+this.count, { fontSize: '20px', fill: '#FFF' });
         this.physics.add.overlap(hanako, staticGroup, collectCoin, null, this);
         function collectCoin(p,fruit){
